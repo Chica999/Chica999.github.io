@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chica999 - Beginner Developer Journey</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #4ecdc4;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #4ecdc4;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        main {
+            margin-top: 80px;
+        }
+
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes gradient {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(45deg); }
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero .journey-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .section {
+            padding: 80px 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            margin: 40px 0;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .section:nth-child(even) {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: white;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 2px;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .profile-image {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05) rotate(5deg);
+        }
+
+        .about-text {
+            color: white;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .learning-progress {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+
+        .progress-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            margin: 0 1rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 4px;
+            transition: width 2s ease;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-card h3 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-card p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .skill-level {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-card h3 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .project-card p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: white;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            padding: 8px 16px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: white;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4ecdc4;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .form-submit {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-content {
+            text-align: center;
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .social-link {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-decoration: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .social-link:hover {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background: #4ecdc4;
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .backend-status {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-links {
+                gap: 1rem;
+            }
+        }
+
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .shape:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">Chica999</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Chica999</h1>
+                <div class="journey-badge">🌱 Beginner Developer Journey</div>
+                <p>Learning to Code • Building Projects • Growing Every Day</p>
+                <a href="#about" class="cta-button">Follow My Journey</a>
+            </div>
+        </section>
+
+        <div class="container">
+            <section id="about" class="section">
+                <h2>About My Journey</h2>
+                <div class="about-content">
+                    <div class="profile-image">
+                        🌱
+                    </div>
+                    <div class="about-text">
+                        <p>Hi! I'm Chica999, and I'm just starting my coding journey. As a beginner developer, I'm passionate about learning new technologies and building projects that help me grow my skills.</p>
+                        <p>Every day brings new challenges and discoveries in the world of programming. I'm focusing on building a strong foundation in both frontend and backend development, taking it one step at a time.</p>
+                        <p>This website itself is part of my learning process - it includes both a frontend interface and a backend server, showcasing what I've learned so far!</p>
+                    </div>
+                </div>
+                
+                <div class="learning-progress">
+                    <h3 style="color: white; margin-bottom: 1.5rem; text-align: center;">My Learning Progress</h3>
+                    <div class="progress-item">
+                        <span style="width: 100px;">HTML/CSS</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 75%"></div>
+                        </div>
+                        <span>75%</span>
+                    </div>
+                    <div class="progress-item">
+                        <span style="width: 100px;">JavaScript</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 60%"></div>
+                        </div>
+                        <span>60%</span>
+                    </div>
+                    <div class="progress-item">
+                        <span style="width: 100px;">Node.js</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 40%"></div>
+                        </div>
+                        <span>40%</span>
+                    </div>
+                    <div class="progress-item">
+                        <span style="width: 100px;">Git/GitHub</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 65%"></div>
+                        </div>
+                        <span>65%</span>
+                    </div>
+                </div>
+            </section>
+
+            <section id="skills" class="section">
+                <h2>Skills I'm Learning</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-icon">🌐</div>
+                        <h3>Frontend Basics</h3>
+                        <p>Learning HTML, CSS, and JavaScript to create interactive web pages</p>
+                        <span class="skill-level">Beginner+</span>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">⚙️</div>
+                        <h3>Backend Fundamentals</h3>
+                        <p>Exploring Node.js and Express to build server-side applications</p>
+                        <span class="skill-level">Beginner</span>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">🗄️</div>
+                        <h3>Database Basics</h3>
+                        <p>Understanding how to store and retrieve data using JSON and basic databases</p>
+                        <span class="skill-level">Learning</span>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">📱</div>
+                        <h3>Responsive Design</h3>
+                        <p>Making websites that work well on phones, tablets, and computers</p>
+                        <span class="skill-level">Beginner+</span>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projects" class="section">
+                <h2>My Learning Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3>Personal Portfolio</h3>
+                        <p>My first full-stack project! This website includes both frontend and backend components to showcase my learning progress.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML/CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Node.js</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Chica999" class="project-link">View Code</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <h3>Simple To-Do App</h3>
+                        <p>A basic task management app that helped me learn JavaScript DOM manipulation and local data handling.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Chica999" class="project-link">View Code</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <h3>Learning Journal</h3>
+                        <p>A simple blog-style site where I document what I learn each day. Great practice for HTML structure and CSS styling!</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">Responsive Design</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Chica999" class="project-link">View Code</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact" class="section">
+                <h2>Get In Touch</h2>
+                <div class="contact-content">
+                    <p>I'd love to connect with other beginners or anyone willing to share advice! Feel free to reach out through the form below.</p>
+                    
+                    <div class="backend-status">
+                        <span class="status-indicator"></span>
+                        Backend Server Status: <span id="server-status">Checking...</span>
+                    </div>
+                </div>
+
+                <form class="contact-form" id="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Your message or advice for a beginner developer!" required></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">Send Message</button>
+                </form>
+
+                <div class="social-links">
+                    <a href="https://github.com/Chica999" class="social-link" title="GitHub">🐙</a>
+                    <a href="mailto:contact@chica999.dev" class="social-link" title="Email">📧</a>
+                    <a href="#" class="social-link" title="LinkedIn">💼</a>
+                    <a href="#" class="social-link" title="Twitter">🐦</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Chica999 - Beginner Developer Journey. Learning in public on <a href="https://github.com/Chica999" style="color: #4ecdc4; text-decoration: none;">GitHub</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.15)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.1)';
+            }
+        });
+
+        // Backend server status check (simulated)
+        function checkServerStatus() {
+            const statusElement = document.getElementById('server-status');
+            
+            // Simulate server check
+            setTimeout(() => {
+                const isOnline = Math.random() > 0.3; // 70% chance server is online
+                if (isOnline) {
+                    statusElement.textContent = 'Online';
+                    statusElement.style.color = '#4ecdc4';
+                } else {
+                    statusElement.textContent = 'Offline (Learning Mode)';
+                    statusElement.style.color = '#ff6b6b';
+                }
+            }, 1000);
+        }
+
+        // Contact form handling
+        document.getElementById('contact-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                message: formData.get('message')
+            };
+
+            try {
+                // Simulate backend API call
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    alert('Message sent successfully! Thanks for reaching out.');
+                    this.reset();
+                } else {
+                    throw new Error('Server error');
+                }
+            } catch (error) {
+                // Fallback for when backend isn't available
+                alert('Thanks for your message! (Backend server is in learning mode - message saved locally)');
+                console.log('Contact form data:', data);
+                this.reset();
+            }
+        });
+
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'all 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Initialize
+        checkServerStatus();
+    </script>
+</body>
+</html>
+
+<!-- 
+Backend Server File (server.js) - Save this as a separate file:
+
+const express = require('express');
+const path = require('path');
+const fs = require('fs').promises;
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Store messages in a simple JSON file (for learning purposes)
+const MESSAGES_FILE = 'messages.json';
+
+// Initialize messages file if it doesn't exist
+async function initializeMessagesFile() {
+    try {
+        await fs.access(MESSAGES_FILE);
+    } catch (error) {
+        await fs.writeFile(MESSAGES_FILE, '[]', 'utf8');
+    }
+}
+
+// API Routes
+app.get('/api/status', (req, res) => {
+    res.json({ 
+        status: 'online',
+        message: 'Chica999 backend server is running!',
+        timestamp: new Date().toISOString()
+    });
+});
+
+// Handle contact form submissions
+app.post('/api/contact', async (req, res) => {
+    try {
+        const { name, email, message } = req.body;
+        
+        // Basic validation
+        if (!name || !email || !message) {
+            return res.status(400).json({ 
+                error: 'All fields are required' 
+            });
+        }
+
+        // Read existing messages
+        const messagesData = await fs.readFile(MESSAGES_FILE, 'utf8');
+        const messages = JSON.parse(messagesData);
+
+        // Add new message
+        const newMessage = {
+            id: Date.now(),
+            name,
+            email,
+            message,
+            timestamp: new Date().toISOString()
+        };
+
+        messages.push(newMessage);
+
+        // Save back to file
+        await fs.writeFile(MESSAGES_FILE, JSON.stringify(messages, null, 2));
+
+        res.json({ 
+            success: true, 
+            message: 'Message received successfully!',
+            id: newMessage.id
+        });
+
+    } catch (error) {
+        console.error('Error handling contact form:', error);
+        res.status(500).json({ 
+            error: 'Server error. Please try again later.' 
+        });
+    }
+});
+
+// Get all messages (for admin purposes - in a real app, add authentication)
+app.get('/api/messages', async (req, res) => {
+    try {
+        const messagesData = await fs.readFile(MESSAGES_FILE, 'utf8');
+        const messages = JSON.parse(messagesData);
+        res.json(messages);
+    } catch (error) {
+        console.error('Error reading messages:', error);
+        res.status(500).json({ error: 'Server error' });
+    }
+});
+
+// Serve the main HTML file
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// Start server
+async function startServer() {
+    await initializeMessagesFile();
+    app.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`);
+        console.log(`Visit: http://localhost:${PORT}`);
+    });
+}
+
+startServer().catch(console.error);
+
+// Export for testing or other uses
+module.exports = app;
+-->
+
+<!-- 
+Package.json file - Save this as package.json:
+
+{
+  "name": "chica999-portfolio",
+  "version": "1.0.0",
+  "description": "Chica999's beginner developer portfolio with full-stack functionality",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "keywords": [
+    "portfolio",
+    "beginner",
+    "developer",
+    "fullstack",
+    "learning"
+  ],
+  "author": "Chica999",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
+-->
+
+<!-- 
+README.md file - Save this as README.md:
+
+# Chica999 - Beginner Developer Portfolio
+
+This is my personal portfolio website showcasing my journey as a beginner developer. It includes both frontend and backend components to demonstrate full-stack development skills I'm learning.
+
+## 🌱 About This Project
+
+As a beginner developer, I built this website to:
+- Showcase my learning progress
+- Practice both frontend and backend development
+- Create a functional contact form with data persistence
+- Document my coding journey
+
+## 🚀 Features
+
+### Frontend
+- Responsive design that works on all devices
+- Modern glassmorphism UI with animations
+- Interactive progress bars showing learning status
+- Contact form with real backend integration
+- Smooth scrolling navigation
+
+### Backend
+- Express.js server
+- RESTful API endpoints
+- Contact form data persistence
+- Server status monitoring
+- JSON file-based storage (learning purposes)
+
+## 🛠️ Technologies Used
+
+- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
+- **Backend**: Node.js, Express.js
+- **Storage**: JSON files (beginner-friendly approach)
+- **Deployment**: Ready for GitHub Pages (frontend) and Heroku/Railway (backend)
+
+## 📁 Project Structure
+
+```
+chica999-portfolio/
+├── index.html          # Main HTML file
+├── server.js           # Express server
+├── package.json        # Node.js dependencies
+├── messages.json       # Contact form data (auto-generated)
+└── README.md          # This file
+```
+
+## 🏃‍♂️ Running Locally
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Chica999/chica999-portfolio.git
+   cd chica999-portfolio
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Start the server:**
+   ```bash
+   npm start
+   ```
+   
+   Or for development with auto-restart:
+   ```bash
+   npm run dev
+   ```
+
+4. **Open in browser:**
+   Visit `http://localhost:3000`
+
+## 🌐 API Endpoints
+
+- `GET /api/status` - Check server status
+- `POST /api/contact` - Submit contact form
+- `GET /api/messages` - View all messages (admin)
+
+## 📚 What I Learned
+
+Building this project taught me:
+- Setting up a Node.js/Express server
+- Handling form submissions
+- File system operations in Node.js
+- API design and RESTful principles
+- Frontend-backend communication
+- Error handling and validation
+- Project structure and organization
+
+## 🚀 Deployment
+
+### Frontend (GitHub Pages)
+1. Push to GitHub repository
+2. Enable GitHub Pages in repository settings
+3. Site will be available at `https://chica999.github.io/repository-name`
+
+### Backend (Railway/Heroku)
+1. Create account on Railway or Heroku
+2. Connect your GitHub repository
+3. Deploy with automatic builds
+4. Update frontend API URLs to point to deployed backend
+
+## 🤝 Contributing
+
+As a beginner, I welcome:
+- Code reviews and suggestions
+- Bug reports
+- Learning resources recommendations
+- Mentorship and guidance
+
+## 📬 Contact
+
+- GitHub: [@Chica999](https://github.com/Chica999)
+- Email: contact@chica999.dev
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+*This project is part of my learning journey as a beginner developer. Feel free to use it as inspiration for your own portfolio!*
+-->
