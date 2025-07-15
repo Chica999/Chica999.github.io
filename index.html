@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chica999 - Beginner Developer Journey</title>
+    <title>Chica999 - Portfolio</title>
     <style>
         * {
             margin: 0;
@@ -12,11 +12,11 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Arial', sans-serif;
+            background-color: #000;
+            color: #fff;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+            overflow-x: hidden;
         }
 
         .container {
@@ -25,269 +25,241 @@
             padding: 0 20px;
         }
 
+        /* Header */
         header {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.1), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
 
         .logo {
-            font-size: 1.8rem;
+            font-size: 3rem;
             font-weight: bold;
-            color: white;
-            text-decoration: none;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #fff;
+            text-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+            margin-bottom: 1rem;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(255, 0, 0, 0.5); }
+            to { text-shadow: 0 0 30px rgba(255, 0, 0, 0.8); }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-bottom: 2rem;
+        }
+
+        /* Navigation */
+        nav {
+            background: #111;
+            padding: 1rem 0;
         }
 
         .nav-links {
             display: flex;
-            list-style: none;
+            justify-content: center;
             gap: 2rem;
+            flex-wrap: wrap;
         }
 
-        .nav-links a {
-            color: white;
+        .nav-btn {
+            background: #222;
+            color: #fff;
+            border: 2px solid #ff0000;
+            padding: 12px 24px;
+            border-radius: 30px;
             text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: #4ecdc4;
-            transform: translateY(-2px);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #4ecdc4;
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        main {
-            margin-top: 80px;
-        }
-
-        .hero {
-            padding: 100px 0;
-            text-align: center;
-            color: white;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradient 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes gradient {
-            0% { filter: hue-rotate(0deg); }
-            100% { filter: hue-rotate(45deg); }
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .hero .journey-badge {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 8px 20px;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            margin-bottom: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 12px 30px;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
             font-weight: bold;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .section {
-            padding: 80px 0;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            margin: 40px 0;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .section:nth-child(even) {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .section h2 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            color: white;
             position: relative;
-        }
-
-        .section h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            border-radius: 2px;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .profile-image {
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: white;
-            margin: 0 auto;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .profile-image:hover {
-            transform: scale(1.05) rotate(5deg);
-        }
-
-        .about-text {
-            color: white;
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-
-        .learning-progress {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            border-radius: 15px;
-            margin-top: 2rem;
-        }
-
-        .progress-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-            color: white;
-        }
-
-        .progress-bar {
-            flex: 1;
-            height: 8px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 4px;
-            margin: 0 1rem;
             overflow: hidden;
         }
 
-        .progress-fill {
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            border-radius: 4px;
-            transition: width 2s ease;
+            background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.2), transparent);
+            transition: left 0.5s;
         }
 
+        .nav-btn:hover::before {
+            left: 100%;
+        }
+
+        .nav-btn:hover {
+            background: #ff0000;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Sections */
+        section {
+            padding: 4rem 0;
+            border-bottom: 1px solid #333;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #ff0000;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.3), transparent);
+            animation: titleShine 4s infinite;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ff0000, transparent);
+            transform: translateX(-50%);
+            animation: underlineGrow 2s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+            0% { 
+                text-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+                transform: scale(1);
+            }
+            50% { 
+                text-shadow: 0 0 20px rgba(255, 0, 0, 0.6), 0 0 30px rgba(255, 0, 0, 0.4);
+                transform: scale(1.02);
+            }
+            100% { 
+                text-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+                transform: scale(1.01);
+            }
+        }
+
+        @keyframes titleShine {
+            0% { left: -100%; }
+            50% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        @keyframes underlineGrow {
+            0% { width: 0; }
+            50% { width: 100px; }
+            100% { width: 0; }
+        }
+
+        .section-title.animate-in {
+            animation: titleSlideIn 0.8s ease-out, titleGlow 3s ease-in-out infinite alternate 0.8s;
+        }
+
+        @keyframes titleSlideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-30px) scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* About Section */
+        .about-content {
+            text-align: center;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Skills Section */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
 
-        .skill-card {
-            background: rgba(255, 255, 255, 0.1);
+        .skill-category {
+            background: #111;
             padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
+            border-radius: 10px;
+            border: 1px solid #333;
+            transition: transform 0.3s ease;
         }
 
-        .skill-card:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        .skill-category:hover {
+            transform: translateY(-5px);
+            border-color: #ff0000;
         }
 
-        .skill-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .skill-card h3 {
-            color: white;
+        .skill-category h3 {
+            color: #ff0000;
             margin-bottom: 1rem;
             font-size: 1.3rem;
         }
 
-        .skill-card p {
-            color: rgba(255, 255, 255, 0.8);
+        .skill-item {
+            margin-bottom: 1rem;
         }
 
-        .skill-level {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 4px 12px;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            margin-top: 1rem;
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
         }
 
+        .skill-bar {
+            background: #333;
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #ff0000, #ff4444);
+            border-radius: 5px;
+            transition: width 2s ease;
+        }
+
+        /* Projects Section */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -296,423 +268,345 @@
         }
 
         .project-card {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
+            background: #111;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            border: 1px solid #333;
         }
 
         .project-card:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+            border-color: #ff0000;
         }
 
-        .project-card h3 {
-            color: white;
-            margin-bottom: 1rem;
-            font-size: 1.4rem;
-        }
-
-        .project-card p {
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 1.5rem;
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .tech-tag {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 4px 12px;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            color: white;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .project-link {
-            padding: 8px 16px;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            color: white;
-            text-decoration: none;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-
-        .project-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .contact-form {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 3rem;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            margin-top: 2rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            color: white;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group textarea {
+        .project-image {
             width: 100%;
-            padding: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #4ecdc4;
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .form-submit {
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            color: white;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 25px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .form-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .contact-content {
-            text-align: center;
-            color: white;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .social-link {
-            display: inline-block;
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            text-decoration: none;
-            border-radius: 50%;
+            height: 200px;
+            background: linear-gradient(45deg, #222, #333);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            color: #666;
+            font-size: 1.2rem;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            color: #ff0000;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-description {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            background: #222;
+            color: #fff;
+            border: 2px solid #ff0000;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
             transition: all 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .social-link:hover {
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        .status-indicator {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            background: #4ecdc4;
-            border-radius: 50%;
-            margin-right: 8px;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
-
-        .backend-status {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 1rem;
-            border-radius: 10px;
-            margin-top: 2rem;
-            text-align: center;
-            color: white;
-        }
-
-        footer {
-            background: rgba(0, 0, 0, 0.3);
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-            margin-top: 2rem;
-            backdrop-filter: blur(10px);
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .social-links {
-                gap: 1rem;
-            }
-        }
-
-        .floating-shapes {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            position: relative;
             overflow: hidden;
-            z-index: -1;
         }
 
-        .shape {
+        .contact-btn::before {
+            content: '';
             position: absolute;
-            background: rgba(255, 255, 255, 0.1);
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 0, 0, 0.2);
             border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
         }
 
-        .shape:nth-child(1) {
-            width: 80px;
-            height: 80px;
-            top: 20%;
-            left: 10%;
-            animation-delay: 0s;
+        .contact-btn:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
-        .shape:nth-child(2) {
-            width: 120px;
-            height: 120px;
-            top: 60%;
-            right: 10%;
-            animation-delay: 2s;
+        .contact-btn:hover {
+            background: #ff0000;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+            transform: scale(1.05);
         }
 
-        .shape:nth-child(3) {
-            width: 60px;
-            height: 60px;
-            bottom: 20%;
-            left: 20%;
-            animation-delay: 4s;
+        /* Footer */
+        footer {
+            background: #111;
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid #333;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <div class="floating-shapes">
-        <div class="shape"></div>
-        <div class="shape"></div>
-        <div class="shape"></div>
-    </div>
-
     <header>
-        <nav class="container">
-            <a href="#" class="logo">Chica999</a>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <h1 class="logo">Chica999</h1>
+            <p class="subtitle">Full Stack Developer in Training</p>
+        </div>
     </header>
 
-    <main>
-        <section class="hero">
-            <div class="container">
-                <h1>Chica999</h1>
-                <div class="journey-badge">🌱 Beginner Developer Journey</div>
-                <p>Learning to Code • Building Projects • Growing Every Day</p>
-                <a href="#about" class="cta-button">Follow My Journey</a>
-            </div>
-        </section>
-
+    <nav>
         <div class="container">
-            <section id="about" class="section">
-                <h2>About My Journey</h2>
-                <div class="about-content">
-                    <div class="profile-image">
-                        🌱
-                    </div>
-                    <div class="about-text">
-                        <p>Hi! I'm Chica999, and I'm just starting my coding journey. As a beginner developer, I'm passionate about learning new technologies and building projects that help me grow my skills.</p>
-                        <p>Every day brings new challenges and discoveries in the world of programming. I'm focusing on building a strong foundation in both frontend and backend development, taking it one step at a time.</p>
-                        <p>This website itself is part of my learning process - it includes both a frontend interface and a backend server, showcasing what I've learned so far!</p>
-                    </div>
-                </div>
-                
-                <div class="learning-progress">
-                    <h3 style="color: white; margin-bottom: 1.5rem; text-align: center;">My Learning Progress</h3>
-                    <div class="progress-item">
-                        <span style="width: 100px;">HTML/CSS</span>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 75%"></div>
-                        </div>
-                        <span>75%</span>
-                    </div>
-                    <div class="progress-item">
-                        <span style="width: 100px;">JavaScript</span>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 20%"></div>
-                        </div>
-                        <span>20%</span>
-                    </div>
-                    <div class="progress-item">
-                        <span style="width: 100px;">Node.js</span>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 20%"></div>
-                        </div>
-                        <span>20%</span>
-                    </div>
-                    <div class="progress-item">
-                        <span style="width: 100px;">Git/GitHub</span>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 65%"></div>
-                        </div>
-                        <span>65%</span>
-                    </div>
-                </div>
-            </section>
-
-            <section id="skills" class="section">
-                <h2>Skills I'm Learning</h2>
-                <div class="skills-grid">
-                    <div class="skill-card">
-                        <div class="skill-icon">🌐</div>
-                        <h3>Frontend Basics</h3>
-                        <p>Learning HTML, CSS, and JavaScript to create interactive web pages</p>
-                        <span class="skill-level">Beginner+</span>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon">⚙️</div>
-                        <h3>Backend Fundamentals</h3>
-                        <p>Exploring Node.js and Express to build server-side applications</p>
-                        <span class="skill-level">Beginner</span>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon">🗄️</div>
-                        <h3>Database Basics</h3>
-                        <p>Understanding how to store and retrieve data using JSON and basic databases</p>
-                        <span class="skill-level">Learning</span>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon">📱</div>
-                        <h3>Responsive Design</h3>
-                        <p>Making websites that work well on phones, tablets, and computers</p>
-                        <span class="skill-level">Beginner+</span>
-                    </div>
-                </div>
-            </section>
-
-            <section id="projects" class="section">
-                <h2>My Learning Projects</h2>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <h3>Personal Portfolio</h3>
-                        <p>My first full-stack project! This website includes both frontend and backend components to showcase my learning progress.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">HTML/CSS</span>
-                            <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">Node.js</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/Chica999" class="project-link">View Code</a>
-                        </div>
-                    </div>
-            </section>
-
-            <section id="contact" class="section">
-                <h2>Get In Touch</h2>
-                <div class="contact-content">
-                    <p>I'd love to connect with other beginners or anyone willing to share advice! Feel free to reach out through the form below.</p>
-                    
-                    <div class="backend-status">
-                        <span class="status-indicator"></span>
-                        Backend Server Status: <span id="server-status">Checking...</span>
-                    </div>
-                </div>
-
-                <form class="contact-form" id="contact-form">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" placeholder="Your name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="5" placeholder="Your message or advice for a beginner developer!" required></textarea>
-                    </div>
-                    <button type="submit" class="form-submit">Send Message</button>
-                </form>
-
-                <div class="social-links">
-                    <a href="https://github.com/Chica999" class="social-link" title="GitHub">🐙</a>
-                    <a href="mailto:chica999.proton.me" class="social-link" title="Email">📧</a>
-                    <a href="https://x.com/Chica999x" class="social-link" title="Twitter">🐦</a>
-                </div>
-            </section>
+            <div class="nav-links">
+                <a href="#about" class="nav-btn">About</a>
+                <a href="#skills" class="nav-btn">Skills</a>
+                <a href="#projects" class="nav-btn">Projects</a>
+                <a href="#contact" class="nav-btn">Contact</a>
+            </div>
         </div>
-    </main>
+    </nav>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title fade-in">About Me</h2>
+            <div class="about-content fade-in">
+                <p>Hello! I'm Chica999, a passionate developer on a journey to master full-stack development. I have a strong foundation in HTML/CSS and am continuously expanding my skills in Java, Node.js, and various web technologies.</p>
+                <br>
+                <p>I'm committed to learning and growing in the field of web development, with a focus on creating responsive, user-friendly applications. Currently diving deep into frontend and backend fundamentals while building practical projects to strengthen my skills.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title fade-in">Skills & Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-category fade-in">
+                    <h3>Current Skills</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>HTML/CSS</span>
+                            <span>75%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Git/GitHub</span>
+                            <span>65%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 65%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Java</span>
+                            <span>20%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 20%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Node.js</span>
+                            <span>20%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 20%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category fade-in">
+                    <h3>Learning & Development</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Frontend Basics</span>
+                            <span>Beginner+</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 35%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Backend Fundamentals</span>
+                            <span>Learning</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 25%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Database Basics</span>
+                            <span>Beginner</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 20%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Responsive Design</span>
+                            <span>Beginner+</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 35%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category fade-in">
+                    <h3>Additional Skills</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>JavaScript</span>
+                            <span>Learning</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 30%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Version Control</span>
+                            <span>Intermediate</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 60%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Problem Solving</span>
+                            <span>Developing</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 45%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Web Development</span>
+                            <span>Growing</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 40%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title fade-in">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card fade-in">
+                    <div class="project-image">Portfolio Website</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Personal Portfolio</h3>
+                        <p class="project-description">A responsive portfolio website built with HTML, CSS, and JavaScript. Features dark theme, animated elements, and modern design principles.</p>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-image">Learning Projects</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Frontend Practice</h3>
+                        <p class="project-description">Various frontend projects focusing on responsive design, CSS animations, and JavaScript interactivity to strengthen core web development skills.</p>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-image">Future Projects</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Coming Soon</h3>
+                        <p class="project-description">Working on backend projects using Node.js, database integration, and full-stack applications as I continue to expand my skill set.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title fade-in">Get In Touch</h2>
+            <div class="contact-content fade-in">
+                <p>I'm always open to discussing new opportunities, collaborations, or just connecting with fellow developers. Feel free to reach out!</p>
+                <div class="contact-links">
+                    <a href="https://github.com/Chica999" class="contact-btn">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Chica999 - Beginner Developer Journey. Learning in public on <a href="https://github.com/Chica999" style="color: #4ecdc4; text-decoration: none;">GitHub</a></p>
+            <p>&copy; 2025 Chica999. Built with passion and dedication to learning.</p>
         </div>
     </footer>
 
@@ -731,69 +625,7 @@
             });
         });
 
-        // Header background on scroll
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.15)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.1)';
-            }
-        });
-
-        // Backend server status check (simulated)
-        function checkServerStatus() {
-            const statusElement = document.getElementById('server-status');
-            
-            // Simulate server check
-            setTimeout(() => {
-                const isOnline = Math.random() > 0.3; // 70% chance server is online
-                if (isOnline) {
-                    statusElement.textContent = 'Online';
-                    statusElement.style.color = '#4ecdc4';
-                } else {
-                    statusElement.textContent = 'Offline (Learning Mode)';
-                    statusElement.style.color = '#ff6b6b';
-                }
-            }, 1000);
-        }
-
-        // Contact form handling
-        document.getElementById('contact-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(this);
-            const data = {
-                name: formData.get('name'),
-                email: formData.get('email'),
-                message: formData.get('message')
-            };
-
-            try {
-                // Simulate backend API call
-                const response = await fetch('/api/contact', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                });
-
-                if (response.ok) {
-                    alert('Message sent successfully! Thanks for reaching out.');
-                    this.reset();
-                } else {
-                    throw new Error('Server error');
-                }
-            } catch (error) {
-                // Fallback for when backend isn't available
-                alert('Thanks for your message! (Backend server is in learning mode - message saved locally)');
-                console.log('Contact form data:', data);
-                this.reset();
-            }
-        });
-
-        // Add intersection observer for animations
+        // Fade in animation on scroll
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -802,33 +634,54 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('visible');
+                    // Add special animation for section titles
+                    if (entry.target.classList.contains('section-title')) {
+                        entry.target.classList.add('animate-in');
+                    }
                 }
             });
         }, observerOptions);
 
-        // Observe all sections
-        document.querySelectorAll('.section').forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(30px)';
-            section.style.transition = 'all 0.6s ease';
-            observer.observe(section);
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
         });
 
-        // Initialize
-        checkServerStatus();
+        // Add observer for section titles
+        document.querySelectorAll('.section-title').forEach(title => {
+            observer.observe(title);
+        });
+
+        // Animate skill bars on scroll
+        const skillsSection = document.getElementById('skills');
+        const skillBars = document.querySelectorAll('.skill-progress');
+
+        const skillsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    skillBars.forEach(bar => {
+                        const width = bar.style.width;
+                        bar.style.width = '0%';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 500);
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+
+        skillsObserver.observe(skillsSection);
+
+        // Add some interactive effects
+        document.querySelectorAll('.skill-category').forEach(category => {
+            category.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.02)';
+            });
+            
+            category.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
     </script>
 </body>
 </html>
-
-
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
----
-
-*This project is part of my learning journey as a beginner developer. Feel free to use it as inspiration for your own portfolio!*
--->
